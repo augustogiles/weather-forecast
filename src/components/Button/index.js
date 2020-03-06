@@ -17,8 +17,6 @@ export const Button = styled.button`
   background: #FFFFFF;
   border-width: 2px;
 
-  margin: 0 20px;
-
   box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.20);
 
   transition-property: box-shadow margin-top filter;

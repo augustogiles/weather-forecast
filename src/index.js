@@ -5,7 +5,9 @@ import './index.css';
 import { WeatherPanel } from './components/WeatherPanel';
 
 const App = () => (
-  <WeatherPanel/>
+  <>
+    <WeatherPanel/>
+  </>
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));
