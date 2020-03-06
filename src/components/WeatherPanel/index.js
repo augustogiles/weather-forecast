@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
 
 import { WeatherCard } from '../WeatherCard'
 import { Button } from '../Button'
+
+import { getCountryByWoeid } from '../../api/api'
+import { countries } from '../../utils'
 
 const StyledCaroussel = styled.div `
   width: 100%;
@@ -52,7 +55,6 @@ const StyledWeatherPanel = styled.div`
   }
 `;
 
-
 export const NavCountry = ( countries ) => {
   return(
     <CountryList>
@@ -65,9 +67,22 @@ export const NavCountry = ( countries ) => {
       </ul>
     </CountryList>
   );
-}
+};
 
 export const WeatherPanel = ({ forecast }) => {
+  const [weatherList, setWeatherList] = useState([]);
+  const [selected, setSelected] = useState({ 
+    name: "Lisbon",
+    woeid: 742676
+  });
+
+  useEffect(() => {
+    getCountryByWoeid({ woeid:742676}).then( res => setWeatherList(res.data.consolidated_weather) )
+  }, [])
+
+
+
+  console.log(weatherList, !!weatherList && !!weatherList.length );
   return (
     <StyledWeatherPanel> 
       
@@ -75,32 +90,13 @@ export const WeatherPanel = ({ forecast }) => {
 
       <CarousselCards>
         <div className="cards container">
-          <WeatherCard /> 
-          <WeatherCard /> 
-          <WeatherCard /> 
-          <WeatherCard /> 
-          <WeatherCard /> 
+          {!!weatherList && !!weatherList.length &&
+            weatherList.map((forecast) => {
+              console.log(forecast)
+              return WeatherCard(forecast);
+            })}
         </div>
       </CarousselCards>
     </StyledWeatherPanel>
   )
-}
-
-const countries = [
-  {
-    name: "Lisbon",
-    woeid: 742676
-  },
-  {
-    name: "London",
-    woeid: 44418
-  },
-  {
-    name: "New York",
-    woeid: 2459115
-  },
-  {
-    name: "São Paulo",
-    woeid: 455827
-  },
-]
+};

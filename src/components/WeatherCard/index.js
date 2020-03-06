@@ -3,6 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Title } from '../../styles';
 
+import { getStaticIcon } from '../../api/api'
+import { getDayOfWeek } from '../../utils'
+
 const DayBanner = styled(Title)`
   text-align: center;
   font-size: 16px;
@@ -83,26 +86,27 @@ const InfoDisclaimer = (text, temp) => {
 }
 
 export const WeatherCard = ({ weather_state_abbr, wind_direction_compass, applicable_date, min_temp, max_temp, the_temp , wind_speed }) => {
+  console.log(new Date(applicable_date), getDayOfWeek(applicable_date));
   return (
     <StyledWeatherCard>
       <StyledCardHeader />
       <div className="contents">
-        <DayBanner> Monday </DayBanner>
+        <DayBanner> {getDayOfWeek(applicable_date)} </DayBanner>
         <div className="content-image">
             <img 
-              src={"https://www.metaweather.com/static/img/weather/png/64/c.png"} 
+              src={getStaticIcon(weather_state_abbr)} 
               alt="forecast-img" 
             />
         </div>
-        <TempBanner>25º</TempBanner>
+        <TempBanner>{the_temp.toFixed()}º</TempBanner>
         <div>
           <StyledInfo className="info temp">
-            {InfoDisclaimer("min", `${2}º`)}
-            {InfoDisclaimer("max", `${22}º`)}
+            {InfoDisclaimer("min", `${min_temp.toFixed()}º`)}
+            {InfoDisclaimer("max", `${max_temp.toFixed()}º`)}
           </StyledInfo>
           <StyledInfo className="info wind">
-            {InfoDisclaimer("wind speed", 5)}
-            {InfoDisclaimer("wind dir", "SW")}
+            {InfoDisclaimer("wind speed", wind_speed.toFixed())}
+            {InfoDisclaimer("wind dir", wind_direction_compass)}
           </StyledInfo>
         </div>
       <div className="footer-card"/>
