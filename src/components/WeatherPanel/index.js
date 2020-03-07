@@ -7,6 +7,8 @@ import { Button } from '../Button'
 import { getCountryByWoeid } from '../../api/api'
 import { countries } from '../../utils'
 
+import { useSelectedCountry } from '../../hooks/useSelectedCountry'
+
 const StyledCaroussel = styled.div `
   width: 100%;
 
@@ -55,13 +57,18 @@ const StyledWeatherPanel = styled.div`
   }
 `;
 
-export const NavCountry = ( countries ) => {
+export const NavCountry = ( countries, callback ) => {
+
+  const selectButton = ({name, woeid}) => {
+    return () => callback({name, woeid});
+  }
+
   return(
     <CountryList>
       <ul className="country-list container">
-        {countries.map(({name, onClick}) => {
+        {countries.map(({name, woeid}) => {
           return(
-            <li key={name}> <Button>{name}</Button> </li>
+            <li key={woeid}> <Button onClick={selectButton({name, woeid})}>{name}</Button> </li>
           );
         })}
       </ul>
@@ -69,32 +76,26 @@ export const NavCountry = ( countries ) => {
   );
 };
 
-export const WeatherPanel = ({ forecast }) => {
+export const WeatherPanel = () => {
   const [weatherList, setWeatherList] = useState([]);
-  const [selected, setSelected] = useState({ 
-    name: "Lisbon",
-    woeid: 742676
-  });
+  const [selectedCountry, updateSelected] = useSelectedCountry(countries[0]);
 
   useEffect(() => {
-    getCountryByWoeid({ woeid:742676}).then( res => setWeatherList(res.data.consolidated_weather) )
-  }, [])
+      getCountryByWoeid(selectedCountry)
+      .then( res => setWeatherList(res.data.consolidated_weather) )
+  }, [selectedCountry])
 
-
-
-  console.log(weatherList, !!weatherList && !!weatherList.length );
   return (
     <StyledWeatherPanel> 
       
-      {NavCountry(countries)}
+      {NavCountry(countries, updateSelected)}
 
       <CarousselCards>
         <div className="cards container">
           {!!weatherList && !!weatherList.length &&
-            weatherList.map((forecast) => {
-              console.log(forecast)
-              return WeatherCard(forecast);
-            })}
+            weatherList.map((forecast) => 
+              WeatherCard(forecast)
+            )}
         </div>
       </CarousselCards>
     </StyledWeatherPanel>

@@ -85,10 +85,11 @@ const InfoDisclaimer = (text, temp) => {
   );
 }
 
-export const WeatherCard = ({ weather_state_abbr, wind_direction_compass, applicable_date, min_temp, max_temp, the_temp , wind_speed }) => {
-  console.log(new Date(applicable_date), getDayOfWeek(applicable_date));
+export const WeatherCard = ({ id, weather_state_abbr, wind_direction_compass, 
+  applicable_date, min_temp, max_temp, the_temp , wind_speed }) => {
+  
   return (
-    <StyledWeatherCard>
+    <StyledWeatherCard key={id}>
       <StyledCardHeader />
       <div className="contents">
         <DayBanner> {getDayOfWeek(applicable_date)} </DayBanner>
