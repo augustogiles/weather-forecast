@@ -74,6 +74,16 @@ export const StyledWeatherCard = styled.div`
     height:12px
   }
 
+  cursor: pointer;
+  transition-property: color filter;
+  transition-duration: .2s;
+
+  &:hover {
+    background-color: #F0F0F0;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.20);
+  }
 `;
 
 const InfoDisclaimer = (text, temp) => {
