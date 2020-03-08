@@ -2,8 +2,10 @@ import styled from 'styled-components'
 
 export const Button = styled.button`
   box-sizing: border-box;
-  height: 60px;
-  min-width: 200px;
+  padding: 20px 52px;
+  margin: 0 20px;
+  max-height: 60px;
+  min-width: 180px;
   
   font-size: 16px;
   font-weight: bold;
