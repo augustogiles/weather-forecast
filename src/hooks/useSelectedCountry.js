@@ -3,11 +3,11 @@ import { useState, useCallback } from 'react';
 export const useSelectedCountry = ( { name, woeid } ) => {
   const [selectedCountry, setSelectedCountry] = useState({ name, woeid });
 
-  const updateSelected = useCallback((country) => {
+  const setSelected = useCallback((country) => {
     setSelectedCountry(country);
   }, [])
 
-  return [selectedCountry, updateSelected];
+  return [selectedCountry, setSelected];
 };
 
 export default useSelectedCountry;
