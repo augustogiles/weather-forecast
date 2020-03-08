@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Title } from '../../styles';
 
 import { getStaticIcon } from '../../api/api'
-import { getDayOfWeek } from '../../utils'
+import { getDayOfWeek, colorsWheaters } from '../../utils'
 
 const DayBanner = styled(Title)`
   text-align: center;
@@ -20,7 +20,7 @@ const StyledCardHeader = styled.div`
   height: 20px;
   width: 200px;
   
-  background-color: #4A8CE9;
+  background-color: ${props => (props.color ? props.color : '#4A8CE9')};
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 `;
@@ -90,7 +90,9 @@ export const WeatherCard = ({ id, weather_state_abbr, wind_direction_compass,
   
   return (
     <StyledWeatherCard key={id}>
-      <StyledCardHeader />
+      <StyledCardHeader 
+        color={colorsWheaters[weather_state_abbr]}
+      />
       <div className="contents">
         <DayBanner> 
           {getDayOfWeek(applicable_date)} 
