@@ -15,7 +15,7 @@ import { useSelectedCountry } from '../../hooks/useSelectedCountry'
 const CardList = styled(StyledCaroussel) `
   
   height: 300px;
-  padding: 0 3%;
+  padding: 0 4%;
 
 `;
 
