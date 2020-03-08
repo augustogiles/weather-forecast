@@ -4,19 +4,19 @@ export const Title = styled.div `
   font-weight: normal;
 `;
 
-export const StyledCaroussel = styled.div `
-  width: 100%;
+export const StyledCaroussel = styled.ul `
+  display: flex;
+  list-style: none;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  
+  height: inherit;
+  margin: 0 -20px 0 -20px;
 
-  .container {
-    width: 100%;
-    height: 100%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    
-    overflow-x: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    } 
-  }
+  &::-webkit-scrollbar {
+    display: none;
+  } 
+  
+  -webkit-overflow-scrolling: touch;
 `
