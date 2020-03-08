@@ -14,7 +14,7 @@ export const Button = styled.button`
   cursor: pointer;
 
   border-color: #FFFFFF ;
-  background: #FFFFFF;
+  background: ${props => (props.selected ? '#DDDDDD' : '#FFFFFF')};
   border-width: 2px;
 
   box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.20);

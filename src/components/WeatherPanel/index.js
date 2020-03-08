@@ -57,7 +57,7 @@ const StyledWeatherPanel = styled.div`
   }
 `;
 
-export const NavCountry = ( countries, callback ) => {
+export const NavButtonsCountries = ( countries, callback, selected ) => {
 
   const selectButton = ({name, woeid}) => {
     return () => callback({name, woeid});
@@ -66,9 +66,16 @@ export const NavCountry = ( countries, callback ) => {
   return(
     <CountryList>
       <ul className="country-list container">
-        {countries.map(({name, woeid}) => {
+        {countries.map(({ name, woeid }) => {
           return(
-            <li key={woeid}> <Button onClick={selectButton({name, woeid})}>{name}</Button> </li>
+            <li key={ woeid }> 
+              <Button 
+                onClick={ selectButton({ name, woeid }) }
+                selected={ woeid === selected.woeid }
+                >
+                  {name}
+                </Button> 
+            </li>
           );
         })}
       </ul>
@@ -88,16 +95,17 @@ export const WeatherPanel = () => {
   return (
     <StyledWeatherPanel> 
       
-      {NavCountry(countries, updateSelected)}
+      {NavButtonsCountries(countries, updateSelected, selectedCountry)}
 
       <CarousselCards>
         <div className="cards container">
           {!!weatherList && !!weatherList.length &&
             weatherList.map((forecast) => 
               WeatherCard(forecast)
-            )}
+          )}
         </div>
       </CarousselCards>
+
     </StyledWeatherPanel>
   )
 };

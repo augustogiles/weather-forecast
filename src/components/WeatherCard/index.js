@@ -92,7 +92,10 @@ export const WeatherCard = ({ id, weather_state_abbr, wind_direction_compass,
     <StyledWeatherCard key={id}>
       <StyledCardHeader />
       <div className="contents">
-        <DayBanner> {getDayOfWeek(applicable_date)} </DayBanner>
+        <DayBanner> 
+          {getDayOfWeek(applicable_date)} 
+        </DayBanner>
+
         <div className="content-image">
             <img 
               src={getStaticIcon(weather_state_abbr)} 
@@ -110,7 +113,7 @@ export const WeatherCard = ({ id, weather_state_abbr, wind_direction_compass,
             {InfoDisclaimer("wind dir", wind_direction_compass)}
           </StyledInfo>
         </div>
-      <div className="footer-card"/>
+        <div className="footer-card"/>
       </div>
     </StyledWeatherCard>
   );
