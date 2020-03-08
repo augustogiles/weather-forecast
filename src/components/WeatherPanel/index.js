@@ -5,6 +5,7 @@ import { StyledCaroussel } from '../../styles'
 
 import { WeatherCard } from '../WeatherCard'
 import { NavBar } from '../NavBar'
+import { Loading } from '../Loading'
 
 import { getCountryByWoeid } from '../../api/api'
 import { countries } from '../../utils'
@@ -24,18 +25,28 @@ const StyledWeatherPanel = styled.div`
 `;
 
 export const WeatherPanel = () => {
+  const [loading, setLoading] = useState(true);
   const [weatherList, setWeatherList] = useState([]);
-  const [selectedCountry, updateSelected] = useSelectedCountry(countries[0]);
+  const [selected, setSelected] = useSelectedCountry(countries[0]);
 
   useEffect(() => {
-      getCountryByWoeid(selectedCountry)
-      .then( res => setWeatherList(res.data.consolidated_weather) )
-  }, [selectedCountry])
+    getCountryByWoeid(selected)
+    .then( res => {
+      setWeatherList(res.data.consolidated_weather)
+      setLoading(false);
+    } )
+
+    return () => {
+      setWeatherList([]);
+      setLoading(true);
+    };
+  }, [selected])
 
   return (
     <StyledWeatherPanel> 
       
-      {NavBar(updateSelected, selectedCountry)}
+      {loading ? <Loading/> : null}
+      {NavBar(setSelected, selected)}
 
       <CarousselCards>
         <div className="cards container">
