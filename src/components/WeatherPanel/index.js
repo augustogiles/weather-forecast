@@ -62,7 +62,7 @@ export const WeatherPanel = () => {
       <CardList className="cards container">
         {!!weatherList && !!weatherList.length &&
           weatherList.map((forecast) => 
-            <li>
+            <li key={forecast.id}>
               {WeatherCard(forecast)}
             </li>
         )}
