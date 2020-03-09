@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Title = styled.div `
   font-weight: normal;
@@ -9,6 +9,7 @@ export const StyledCaroussel = styled.ul `
   list-style: none;
   overflow-x: scroll;
   overflow-y: hidden;
+  scroll-behavior: smooth;
   white-space: nowrap;
   
   height: inherit;

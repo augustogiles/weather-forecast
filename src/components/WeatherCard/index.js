@@ -3,8 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Title } from '../../styles';
 
-import { getStaticIcon } from '../../api/api'
-import { getDayOfWeek, colorsWheaters } from '../../utils'
+import { getStaticIcon } from '../../api/api';
+import { getDayOfWeek, colorsWheaters } from '../../utils';
 
 const DayBanner = styled(Title)`
   text-align: center;
@@ -71,7 +71,7 @@ export const StyledWeatherCard = styled.div`
   }
 
   .footer-card{
-    height:12px
+    height:12px;
   }
 
   cursor: pointer;

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-import { StyledCaroussel } from '../../styles'
+import { StyledCaroussel } from '../../styles';
 
-import { WeatherCard } from '../WeatherCard'
-import { NavBar } from '../NavBar'
-import { Loading } from '../Loading'
+import { WeatherCard } from '../WeatherCard';
+import { NavBar } from '../NavBar';
+import { Loading } from '../Loading';
 
-import { getCountryByWoeid } from '../../api/api'
-import { countries } from '../../utils'
+import { getCountryByWoeid } from '../../api/api';
+import { countries } from '../../utils';
 
-import { useSelectedCountry } from '../../hooks/useSelectedCountry'
+import { useSelectedCountry } from '../../hooks/useSelectedCountry';
 
 const CardList = styled(StyledCaroussel) `
   

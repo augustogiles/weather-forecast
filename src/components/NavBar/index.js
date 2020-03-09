@@ -1,11 +1,11 @@
 
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-import { StyledCaroussel } from '../../styles'
-import { Button } from '../Button'
+import { StyledCaroussel } from '../../styles';
+import { Button } from '../Button';
 
-import { countries } from '../../utils'
+import { countries } from '../../utils';
 
 const CountryList = styled(StyledCaroussel) `
   

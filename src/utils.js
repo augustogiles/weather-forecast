@@ -9,7 +9,7 @@ export const colorsWheaters = {
   hc: "#a7a69d",
   lc: "#c0c0c0",
   c: "#1ebdd0",
-}
+};
 
 export const countries = [
   {
@@ -28,10 +28,10 @@ export const countries = [
     name: "São Paulo",
     woeid: 455827
   },
-]
+];
 
 export function getDayOfWeek(dateStr){
   return dayStr[new Date(dateStr).getDay()];
-}
+};
 
 const dayStr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];

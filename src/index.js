@@ -6,7 +6,7 @@ import { WeatherPanel } from './components/WeatherPanel';
 
 const App = () => (
   <>
-    <WeatherPanel/>
+    <WeatherPanel />
   </>
 );
 
