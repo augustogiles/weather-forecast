@@ -13,7 +13,7 @@ const CountryList = styled(StyledCaroussel)`
 
 const NavBar = (callback, selected) => {
   const selectButton = ({ name, woeid }) => {
-    return () => callback({ name, woeid });
+    if (woeid !== selected.woeid) return () => callback({ name, woeid });
   };
 
   return (
