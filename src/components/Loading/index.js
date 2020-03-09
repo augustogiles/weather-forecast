@@ -1,16 +1,14 @@
-
 import React from 'react';
-import styled, { keyframes } from 'styled-components'; 
+import styled, { keyframes } from 'styled-components';
 
 const LoadingStyled = styled.div`
   position: fixed;
-  
+
   margin: auto auto;
   color: white;
 
   top: 50%;
   left: 50%;
-
 `;
 
 export const ShadowStyled = styled.div`
@@ -41,14 +39,13 @@ const LoadingSpinner = styled.div`
   border: 5px solid white;
   border-right-color: transparent;
   border-radius: 50%;
-  
 `;
 
 export const Loading = () => {
   return (
     <ShadowStyled>
-      <LoadingStyled> 
-        <LoadingSpinner/>
+      <LoadingStyled>
+        <LoadingSpinner />
         Loading ...
       </LoadingStyled>
     </ShadowStyled>

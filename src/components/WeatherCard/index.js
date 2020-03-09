@@ -19,16 +19,16 @@ const TempBanner = styled(DayBanner)`
 const StyledCardHeader = styled.div`
   height: 20px;
   width: 200px;
-  
+
   background-color: ${props => (props.color ? props.color : '#4A8CE9')};
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 `;
 
 const StyledInfo = styled.div`
-    display: flex;
-    justify-content: space-around;
-    padding: 0 10px;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 10px;
 
   p {
     margin: 0;
@@ -47,10 +47,10 @@ export const StyledWeatherCard = styled.div`
   margin: 0 10px 0;
   width: 200px;
   height: 280px;
-  
+
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.05), 0 0px 40px rgba(0, 0, 0, 0.08);
   border-radius: 5px;
-  color: #3C3A45;
+  color: #3c3a45;
 
   display: inline-block;
 
@@ -70,19 +70,19 @@ export const StyledWeatherCard = styled.div`
     margin-bottom: 4%;
   }
 
-  .footer-card{
-    height:12px;
+  .footer-card {
+    height: 12px;
   }
 
   cursor: pointer;
   transition-property: color filter;
-  transition-duration: .2s;
+  transition-duration: 0.2s;
 
   &:hover {
-    background-color: #F0F0F0;
+    background-color: #f0f0f0;
     margin-top: 5px;
     margin-bottom: 0px;
-    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.20);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -93,40 +93,40 @@ const InfoDisclaimer = (text, temp) => {
       <p>{temp}</p>
     </div>
   );
-}
+};
 
-export const WeatherCard = ({ id, weather_state_abbr, wind_direction_compass, 
-  applicable_date, min_temp, max_temp, the_temp , wind_speed }) => {
-  
+export const WeatherCard = ({
+  id,
+  weather_state_abbr,
+  wind_direction_compass,
+  applicable_date,
+  min_temp,
+  max_temp,
+  the_temp,
+  wind_speed
+}) => {
   return (
     <StyledWeatherCard key={id}>
-      <StyledCardHeader 
-        color={colorsWheaters[weather_state_abbr]}
-      />
+      <StyledCardHeader color={colorsWheaters[weather_state_abbr]} />
       <div className="contents">
-        <DayBanner> 
-          {getDayOfWeek(applicable_date)} 
-        </DayBanner>
+        <DayBanner>{getDayOfWeek(applicable_date)}</DayBanner>
 
         <div className="content-image">
-            <img 
-              src={getStaticIcon(weather_state_abbr)} 
-              alt="forecast-img" 
-            />
+          <img src={getStaticIcon(weather_state_abbr)} alt="forecast-img" />
         </div>
         <TempBanner>{the_temp.toFixed()}º</TempBanner>
         <div>
           <StyledInfo className="info temp">
-            {InfoDisclaimer("min", `${min_temp.toFixed()}º`)}
-            {InfoDisclaimer("max", `${max_temp.toFixed()}º`)}
+            {InfoDisclaimer('min', `${min_temp.toFixed()}º`)}
+            {InfoDisclaimer('max', `${max_temp.toFixed()}º`)}
           </StyledInfo>
           <StyledInfo className="info wind">
-            {InfoDisclaimer("wind speed", wind_speed.toFixed())}
-            {InfoDisclaimer("wind dir", wind_direction_compass)}
+            {InfoDisclaimer('wind speed', wind_speed.toFixed())}
+            {InfoDisclaimer('wind dir', wind_direction_compass)}
           </StyledInfo>
         </div>
-        <div className="footer-card"/>
+        <div className="footer-card" />
       </div>
     </StyledWeatherCard>
   );
-}
+};

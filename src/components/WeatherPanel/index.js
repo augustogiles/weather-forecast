@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { StyledCaroussel } from '../../styles';
 
 import { WeatherCard } from '../WeatherCard';
-import { NavBar } from '../NavBar';
+import NavBar from '../NavBar';
 import { Loading } from '../Loading';
 
 import { getCountryByWoeid } from '../../api/api';
@@ -12,15 +12,12 @@ import { countries } from '../../utils';
 
 import { useSelectedCountry } from '../../hooks/useSelectedCountry';
 
-const CardList = styled(StyledCaroussel) `
-  
+const CardList = styled(StyledCaroussel)`
   height: 300px;
   padding: 0 4%;
-
 `;
 
 const StyledWeatherPanel = styled.div`
-
   padding: 20px;
   .cards {
     overflow-x: scroll;
@@ -31,43 +28,41 @@ const StyledWeatherPanel = styled.div`
 
     &::-webkit-scrollbar {
       display: none;
-    } 
+    }
   }
 `;
 
-export const WeatherPanel = () => {
+const WeatherPanel = () => {
   const [loading, setLoading] = useState(true);
   const [weatherList, setWeatherList] = useState([]);
   const [selected, setSelected] = useSelectedCountry(countries[0]);
 
   useEffect(() => {
-    getCountryByWoeid(selected)
-    .then( res => {
-      setWeatherList(res.data.consolidated_weather)
+    getCountryByWoeid(selected).then(res => {
+      setWeatherList(res.data.consolidated_weather);
       setLoading(false);
-    } )
+    });
 
     return () => {
       setWeatherList([]);
       setLoading(true);
     };
-  }, [selected])
+  }, [selected]);
 
   return (
-    <StyledWeatherPanel> 
-      
-      {loading ? <Loading/> : null}
+    <StyledWeatherPanel>
+      {loading ? <Loading /> : null}
       {NavBar(setSelected, selected)}
-        
-      <CardList className="cards container">
-        {!!weatherList && !!weatherList.length &&
-          weatherList.map((forecast) => 
-            <li key={forecast.id}>
-              {WeatherCard(forecast)}
-            </li>
-        )}
-      </CardList>
 
+      <CardList className="cards container">
+        {!!weatherList &&
+          !!weatherList.length &&
+          weatherList.map(forecast => (
+            <li key={forecast.id}>{WeatherCard(forecast)}</li>
+          ))}
+      </CardList>
     </StyledWeatherPanel>
-  )
+  );
 };
+
+export default WeatherPanel;
