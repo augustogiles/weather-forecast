@@ -1,5 +1,5 @@
 {
-  "name": "ibanw-challenge",
+  "name": "weather-forecast",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
