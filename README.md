@@ -18,5 +18,11 @@ yarn install
 yarn start
 ```
 
+## Screens
+
+
+#### 1. Main
+<img alt="" src="https://raw.githubusercontent.com/augustogiles/weather-forecast/dev/screens/forecast_page.png">
+
 ## License
 [MIT License](LICENSE.md) Copyright (c) 2015-2019
